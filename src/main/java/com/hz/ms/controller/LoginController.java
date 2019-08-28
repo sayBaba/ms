@@ -1,6 +1,7 @@
 package com.hz.ms.controller;
 
 import com.hz.ms.req.LoginReq;
+import com.hz.ms.resp.Result;
 import com.hz.ms.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +30,11 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/user/login")
-    public void userLogin(HttpServletResponse response, HttpSession session, @Valid LoginReq loginReq){
+    public Result userLogin(HttpServletResponse response, HttpSession session, @Valid LoginReq loginReq){
         logger.info("接受到手机号:{}的登录请求....",loginReq.getMobile());
-        iUserService.login(loginReq);
-
+        Result result = iUserService.login(loginReq);
+        //TODO  写cookie
+        return result;
     }
 
 }

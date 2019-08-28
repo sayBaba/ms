@@ -29,7 +29,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         from user
-        WHERE phone=#{phone}
+        WHERE phone=#{map.phone}
     </select>
 
 </mapper>

@@ -81,6 +81,7 @@
                 layer.closeAll();
                 if (data.code == 0) {
                     layer.msg("成功");
+                    //当前页面打开URL页面
                     window.location.href = "/goods/list";
                 } else {
                     layer.msg(data.msg);
