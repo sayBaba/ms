@@ -32,5 +32,14 @@
               FROM goods g, seckill_goods s WHERE s.goods_id = g.id
     </select>
 
+    <!-- 查询秒杀商品列表 -->
+    <select id="getSecKillGoods" parameterType="java.lang.String" resultMap="BaseResultSeckillOrderAndGoodsMap">
+            SELECT s.seckil_price,s.stock_count,s.start_date,s.end_date,
+             g.id,g.goods_name,g.goods_title,g.goods_img,g.goods_price,g.goods_stock,
+             g.create_date,g.update_date,g.goods_detail
+              FROM goods g, seckill_goods s WHERE s.goods_id = g.id
+              AND s.goods_id = #{goodsId}
+    </select>
+
 
 </mapper>

@@ -3,6 +3,7 @@ package com.hz.ms.controller;
 import com.hz.ms.req.LoginReq;
 import com.hz.ms.resp.Result;
 import com.hz.ms.service.IUserService;
+import com.hz.ms.utils.CookieUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,13 @@ public class LoginController {
     @RequestMapping("/user/login")
     public Result userLogin(HttpServletResponse response, HttpSession session, @Valid LoginReq loginReq){
         logger.info("接受到手机号:{}的登录请求....",loginReq.getMobile());
-        Result result = iUserService.login(loginReq);
-        //TODO  写cookie
+        String sessionId = session.getId();
+        Result result = iUserService.login(loginReq,sessionId);
+
+        //登录成功写cookie
+        if(result.getCode()== 0){
+            CookieUtil.writeLoginToken(response,sessionId);
+        }
         return result;
     }
 

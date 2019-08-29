@@ -157,11 +157,13 @@
 
     }
 
-    function render(detail) {
-        var miaoshaStatus = detail.miaoshaStatus;
-        var remainSeconds = detail.remainSeconds;
-        var goods = detail.goods;
-        var user = detail.user;
+    function render(data) {
+
+        //var miaoshaStatus = detail.miaoshaStatus;
+        var remainSeconds = data.remainSeconds;
+        alert(remainSeconds);
+        var goods = data.secKillGoods;
+        var user = data.user;
         if (user) {
             $("#userTip").hide();
         }
@@ -190,7 +192,7 @@
             type: "GET",
             success: function (data) {
                 if (data.code == 0) {
-                    render(data.data);
+                    render(data);
                 } else {
                     layer.msg(data.msg);
                 }

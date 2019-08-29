@@ -12,5 +12,5 @@ public interface IUserService {
      * 登录接口
      * @param loginReq
      */
-    public Result login(LoginReq loginReq);
+    public Result login(LoginReq loginReq,String sessionId);
 }

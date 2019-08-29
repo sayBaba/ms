@@ -32,7 +32,7 @@ public class UserServiceImpl implements IUserService {
     private RedisUtil redisUtil;
 
     @Override
-    public Result login(LoginReq loginReq) {
+    public Result login(LoginReq loginReq,String sessionId) {
         Map<String,String> map = new HashMap<String,String>();
         map.put("phone",loginReq.getMobile());
         User user = userMapper.checkPhone(map);
@@ -55,7 +55,8 @@ public class UserServiceImpl implements IUserService {
         result.setMsg(CodeMsg.SUCCESS.getMsg());
         user.setPassword("");
         result.setData(user);
-        String redisKey = user.getPhone()+user.getId();
+        String redisKey = "user_"+sessionId;
+
         //用户信息缓存到redis
         redisUtil.set(redisKey,user);
         return result;
