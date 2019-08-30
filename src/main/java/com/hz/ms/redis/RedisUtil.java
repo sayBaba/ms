@@ -63,4 +63,41 @@ public final class RedisUtil {
         return key == null ? null : redisTemplate.opsForValue().get(key);
     }
 
+    /**
+     * redis中的值-1
+     * @param key
+     * @return
+     */
+    public int decrement(String key) {
+        try {
+           Long a = redisTemplate.opsForValue().decrement(key);
+           return a.intValue();
+        } catch (Exception e) {
+            return -1;
+
+        }
+    }
+
+    /**
+     * redis中的值+1
+     * @param key
+     * @return
+     */
+    public int increment(String key) {
+        try {
+            Long a = redisTemplate.opsForValue().increment(key);
+            return a.intValue();
+        } catch (Exception e) {
+            return -1;
+
+        }
+    }
+
+
+    public void tt(){
+        redisTemplate.opsForValue().decrement("goods1");
+//        redisTemplate.opsForValue().increment("goods2");
+
+    }
+
 }

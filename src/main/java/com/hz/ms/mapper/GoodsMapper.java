@@ -22,4 +22,12 @@ public interface GoodsMapper {
      */
     SecKillGoods getSecKillGoods(@Param("goodsId") String goodsId);
 
+    /**
+     * 减库存
+     * @param goodsId
+     * @return
+     */
+    int updateStock(long goodsId);
+
+
 }
